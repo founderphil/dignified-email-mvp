@@ -3,7 +3,7 @@
  * Deploy: Deploy → Test deployments → Install (accept new scopes).
  */
 
-const BACKEND = 'https://heretically-unperspiring-jacquelin.ngrok-free.dev/v1/generate';
+const BACKEND = 'PUT YOURS HERE/v1/generate';
 
 // Right-sidebar card (optional informational UI)
 function buildAddOn(e) {
