@@ -1,0 +1,8 @@
+{
+  "name": "dignified-email-mvp",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "outlook-addin"
+  ]
+}

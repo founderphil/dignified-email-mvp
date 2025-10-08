@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
+           xsi:type="MailApp">
+  <Id>1f2e3d4c-0000-4b4a-9d9a-1234567890ab</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Dignified Email Inc.</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Dignified Email" />
+  <Description DefaultValue="Generate dignified email drafts." />
+  <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png" />
+  <SupportUrl DefaultValue="https://localhost:3000/support" />
+  <AppDomains>
+    <AppDomain>localhost</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Mailbox" />
+  </Hosts>
+  <Requirements>
+    <Sets DefaultMinVersion="1.5">
+      <Set Name="Mailbox" />
+    </Sets>
+  </Requirements>
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://localhost:3000/taskpane.html" />
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+  <Permissions>ReadWriteItem</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="And">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="ReadOrCompose" />
+  </Rule>
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+
+  <VersionOverrides xsi:type="mailappor:VersionOverrides" Version="1.0">
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <DesktopFormFactor>
+          <FunctionFile resid="commands.html" />
+          <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="msgComposeGroup">
+                <Label resid="groupLabel" />
+                <Control xsi:type="Button" id="btnOpenPane">
+                  <Label resid="paneButtonLabel" />
+                  <Supertip>
+                    <Title resid="paneButtonLabel" />
+                    <Description resid="paneButtonDesc" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="icon16" />
+                    <bt:Image size="32" resid="icon32" />
+                    <bt:Image size="80" resid="icon80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="taskpaneUrl" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="icon16" DefaultValue="https://localhost:3000/assets/icon-16.png" />
+        <bt:Image id="icon32" DefaultValue="https://localhost:3000/assets/icon-32.png" />
+        <bt:Image id="icon80" DefaultValue="https://localhost:3000/assets/icon-80.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="taskpaneUrl" DefaultValue="https://localhost:3000/taskpane.html" />
+        <bt:Url id="commands.html" DefaultValue="https://localhost:3000/commands.html" />
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="groupLabel" DefaultValue="Dignified Email" />
+        <bt:String id="paneButtonLabel" DefaultValue="Open Dignified Draft" />
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="paneButtonDesc" DefaultValue="Open the pane to generate a dignified draft." />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>

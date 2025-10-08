@@ -1,0 +1,34 @@
+{
+  "timeZone": "America/New_York",
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/gmail.addons.execute",
+    "https://www.googleapis.com/auth/gmail.addons.current.action.compose",
+    "https://www.googleapis.com/auth/gmail.addons.current.message.metadata",
+    "https://www.googleapis.com/auth/gmail.addons.current.message.readonly",
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/gmail.compose"
+  ],
+  "addOns": {
+    "common": {
+      "name": "Dignified Email",
+      "logoUrl": "https://www.gstatic.com/images/branding/product/2x/apps_script_48dp.png",
+      "openLinkUrlPrefixes": [
+        "https://heretically-unperspiring-jacquelin.ngrok-free.dev"
+      ]
+    },
+    "gmail": {
+      "contextualTriggers": [
+        { "unconditional": {}, "onTriggerFunction": "buildAddOn" }
+      ],
+      "composeTrigger": {
+        "selectActions": [
+          { "text": "Generate dignified draft", "runFunction": "composeAction" }
+        ],
+        "draftAccess": "METADATA"
+      }
+    }
+  }
+}
