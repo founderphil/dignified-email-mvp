@@ -2,7 +2,6 @@ import { Router } from 'express';
 import { z } from 'zod';
 import { buildPrompt } from '../prompt.js';
 import { enforcePolicy, defaultPolicy } from '../policy.js';
-// Swap providers here:
 import { complete } from '../providers/openai.js';
 // import { complete } from '../providers/mock.js';
 
@@ -21,13 +20,17 @@ const GenSchema = z.object({
 router.post('/', async (req, res) => {
   console.log('generate called with:', req.body);
   try {
+    // Validate input
     const data = GenSchema.parse(req.body);
     const prompt = buildPrompt(data);
+    console.log('Prompt built:', prompt);
+
+    // Call OpenAI
     console.log('Calling OpenAI...');
     const result = await complete(prompt);
     console.log('OpenAI result:', result);
-    const safeBody = enforcePolicy(result.body, defaultPolicy);
-    res.json({ subject: result.subject, body: safeBody });
+
+    res.json(result);
   } catch (e: any) {
     console.error('Error in /v1/generate:', e);
     res.status(400).json({ error: e.message || 'Unknown error' });
