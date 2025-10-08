@@ -4,5 +4,8 @@
   "workspaces": [
     "backend",
     "outlook-addin"
-  ]
+  ],
+  "dependencies": {
+    "serverless-http": "^4.0.0"
+  }
 }
