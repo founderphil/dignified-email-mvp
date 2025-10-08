@@ -45,6 +45,10 @@ export async function complete(prompt: string) {
     };
   } catch (err) {
     clearTimeout(timeout);
-    throw new Error('OpenAI API request timed out or failed: ' + err.message);
+    let msg = 'OpenAI API request timed out or failed.';
+    if (err && typeof err === 'object' && 'message' in err) {
+      msg += ' ' + (err as Error).message;
+    }
+    throw new Error(msg);
   }
 }
