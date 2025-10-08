@@ -16,6 +16,9 @@ app.use((err: any, _req: any, res: any, _next: any) => {
 });
 
 const port = Number(process.env.PORT || 8787);
-app.listen(port, () => {
-  console.log(`Backend listening on http://localhost:${port}`);
-});
+// Only listen if running locally
+if (process.env.NODE_ENV !== 'vercel') {
+  app.listen(port, () => {
+    console.log(`Backend listening on http://localhost:${port}`);
+  });
+}
