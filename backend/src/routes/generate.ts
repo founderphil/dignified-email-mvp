@@ -19,15 +19,17 @@ const GenSchema = z.object({
 });
 
 router.post('/', async (req, res) => {
+  console.log('generate called with:', req.body);
   try {
     const data = GenSchema.parse(req.body);
     const prompt = buildPrompt(data);
+    console.log('Calling OpenAI...');
     const result = await complete(prompt);
+    console.log('OpenAI result:', result);
     const safeBody = enforcePolicy(result.body, defaultPolicy);
     res.json({ subject: result.subject, body: safeBody });
   } catch (e: any) {
     console.error('Error in /v1/generate:', e);
-    // Always return JSON error
-    res.status(400).json({ error: e.message || 'Unknown error', details: e });
+    res.status(400).json({ error: e.message || 'Unknown error' });
   }
 });
